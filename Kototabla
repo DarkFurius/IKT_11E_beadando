@@ -1,0 +1,26 @@
+CREATE DATABASE social1;
+USE social1;
+
+CREATE TABLE users(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    felhasznalonev varchar(40) NOT NULL UNIQUE,
+    jelszo varchar(40) NOT NULL
+);
+
+CREATE TABLE topics(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    topic varchar(40) NOT NULL UNIQUE
+);
+
+CREATE TABLE categories(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    category varchar(40) NOT NULL UNIQUE
+);
+
+CREATE TABLE cats_topics(
+    category_id INT NOT NULL,
+    topic_id INT NOT NULL,
+    PRIMARY KEY(category_id, topic_id),
+    CONSTRAINT fk_category_id FOREIGN KEY (category_id) REFERENCES categories(id),
+    CONSTRAINT fk_topic_id FOREIGN KEY (topic_id) REFERENCES topics(id)
+);
